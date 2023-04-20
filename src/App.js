@@ -44,6 +44,8 @@ function App() {
         balanceOfThreshold: 10,
         contractAddress,
         signerOrProvider: signer,
+        tokenId: 1, // only one token ID exist
+        tokenStandard: "erc1155",
         userAddress,
       });
 
