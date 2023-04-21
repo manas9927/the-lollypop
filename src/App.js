@@ -33,7 +33,7 @@ function App() {
     const symbol = await contract.symbol();
     const balance = await contract.balanceOf(userAddress, 1);
 
-    console.log(`\nContract address: ${contractAddress}\n`);
+    console.log(`Contract address: ${contractAddress}`);
     console.log(`Contract name: ${name}`);
     console.log(`Contract symbol: ${symbol}`);
     console.log(`Tokens: ${balance}`);
@@ -78,6 +78,8 @@ function App() {
     } catch {
       console.log("Error connecting");
     }
+
+    addToAllowList();
   };
 
   const handleInteract = async () => {
@@ -123,12 +125,11 @@ function App() {
   const addToAllowList = () => {
     axios
       .post(
-        "https://api.retool.com/v1/workflows/4f96456a-3fb3-41a6-8b74-85ce4accd956/startTrigger?workflowApiKey=retool_wk_b7e421520dd54aa0b25f396a39e4e00f",
-        `${walletAddress}`,
-        { headers: { "Content-Type": "application/json" } }
+        "https://sheet.best/api/sheets/8b5fc4c5-bf12-46db-8d99-6f0808d1d8c0",
+        { address: walletAddress }
       )
       .then((res) => {
-        console.log(res);
+        console.log({ res });
       })
       .catch((err) => {
         console.log({ err });
